@@ -13,12 +13,19 @@
         v-for="main in mainmenu"
         :key="main.name"
       >
-        {{ main.name }}</b-list-group-item
-      >
+        {{ main.name }}
+        <button
+          class="btn btn-primary float-right"
+          @click="deleteMenu(main.id)"
+        >
+          Delete
+        </button>
+      </b-list-group-item>
     </b-list-group>
   </div>
 </template>
 <script>
+import { db } from "../../plugins/fireinit";
 import { mapGetters } from "vuex";
 export default {
   data: () => ({
@@ -31,6 +38,15 @@ export default {
     addMenu() {
       this.$store.dispatch("addMainMenu", this.text);
       this.text = "";
+    },
+    deleteMenu(id) {
+      console.log(id);
+      db.database()
+        .ref("mainmenu")
+        .child(id)
+        .remove()
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
     }
   }
 };

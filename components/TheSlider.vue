@@ -9,7 +9,7 @@
         <div v-if="item.sub">
           <v-list-item @click="expan(i), (item.expan = !item.expan)">
             <v-list-item-content v-b-toggle:my-collapse>
-              <v-list-item-title
+              <v-list-item-title class="text-capitalize"
                 >{{ item.name }}
                 <v-icon
                   class="float-right"
@@ -22,22 +22,26 @@
           </v-list-item>
           <div v-if="openExpan == i">
             <div v-for="(sub, i) in item.sub" :key="i">
-              <v-list-item>
+               <nuxt-link :to="sub.name.replace(/\s+/g,'')">
+              <v-list-item >
                 <v-list-item-content>
-                  <v-list-item-title class="ml-3"
+                  <v-list-item-title class="ml-5 text-capitalize"
                     >{{ sub.name }} </v-list-item-title
                   >
                 </v-list-item-content>
               </v-list-item>
+               </nuxt-link>
             </div>
           </div>
         </div>
         <div v-else>
-          <v-list-item>
+          <nuxt-link :to="item.name.replace(/\s+/g,'')">
+            <v-list-item>
             <v-list-item-content>
-              <v-list-item-title>{{ item.name }}</v-list-item-title>
+              <v-list-item-title class="text-capitalize">{{ item.name }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          </nuxt-link>
         </div>
       </div>
     </v-navigation-drawer>
@@ -68,4 +72,10 @@ export default {
   }
 };
 </script>
+<style scoped>
+a{
+  text-decoration: none !important;
+}
+
+</style>
 

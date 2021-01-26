@@ -27,12 +27,15 @@
         v-for="main in selectedSubMenu"
         :key="main.name"
       >
-        {{ main.name }}</b-list-group-item
+        {{ main.name }}
+        <button class="btn btn-primary float-right" @click="deleteSubMenu(main.id)">Delete</button>
+        </b-list-group-item
       >
     </b-list-group>
   </div>
 </template>
 <script>
+import {db} from '../../plugins/fireinit'
 import { mapGetters } from "vuex";
 export default {
   data: () => ({
@@ -55,6 +58,12 @@ export default {
       });
       this.menuid = "";
       this.submenuname = "";
+    },
+     deleteSubMenu(id) {
+      console.log(id);
+      db.database().ref('submenu').child(id).remove()
+      .then(res=>console.log(res))
+      .catch(err=>console.log(err))
     }
   }
 };

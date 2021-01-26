@@ -30,7 +30,11 @@ export default {
       {
         name: "add sub catagory",
         to: "/dash/submenu"
-      }
+      },
+       {
+        name: "add product",
+        to: "/dash/product"
+      },
     ]
   }),
   mounted() {

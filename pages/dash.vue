@@ -1,6 +1,8 @@
 <template>
   <div class="d-flex">
     <dash-slider></dash-slider>
-    <nuxt-child />
+    <div class="p-4">
+      <nuxt-child />
     </div>
+  </div>
 </template>

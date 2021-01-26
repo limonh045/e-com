@@ -41,25 +41,23 @@ const actions = {
         menu=[]
       });
   },
-  async collectSubMenu({ commit }) {
+  async collectSubMenu({ commit },state) {
     var submenu = [];
     await db
       .database()
       .ref("submenu")
       .on("value", snapshot => {
-        console.log(snapshot);
+        
         snapshot.forEach(e => {
           submenu.push({ ...e.val(), id: e.key });
         });
         commit("collectsSubMenu", submenu);
-        submenu=[];
+        
       });
   }
 };
 const getters = {
   items(state) {
-    
-    let items = [];
     for (const key of state.mainMenu) {
       for (const sub of state.subMenu) {
         if (sub.menuid === key.id) {
@@ -72,11 +70,8 @@ const getters = {
           }
         }
       }
-    
     }
-
-    items = state.mainMenu;
-    return items;
+    return state.mainMenu;
   },
   mainmenu : state=> state.mainMenu,
   submenu : state=> state.subMenu

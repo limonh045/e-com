@@ -1,6 +1,9 @@
 <template>
-<div>
-  <the-slider></the-slider>
-  
-</div>
+  <div class="d-flex">
+    <the-slider></the-slider>
+      <nuxt-child />
+  </div>
 </template>
+<style scoped>
+
+</style>
